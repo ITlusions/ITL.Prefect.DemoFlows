@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}  # Namespace set from values.yaml
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 
     
 spec:
