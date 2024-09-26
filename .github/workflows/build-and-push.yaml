@@ -21,10 +21,10 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t your-username/prefect-flow:1.0.0 .
-          docker tag your-username/prefect-flow:1.0.0 your-username/prefect-flow:latest
+          docker build -t nweistra/itlprefecthelloflow:1.0.0 .
+          docker tag nweistra/itlprefecthelloflow:1.0.0 nweistra/itlprefecthelloflow:latest
 
       - name: Push Docker Image
         run: |
-          docker push your-username/prefect-flow:1.0.0
-          docker push your-username/prefect-flow:latest
+          docker push nweistra/itlprefecthelloflow:1.0.0
+          docker push nweistra/itlprefecthelloflow:latest
