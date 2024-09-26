@@ -17,8 +17,11 @@ if __name__ == "__main__":
     # Create a LocalFileSystem storage block
     local_storage = LocalFileSystem(basepath="/opt/prefect/flows")
 
-    run_deployment(name="hello-flow")
+    hello_flow.deploy(
+        name="HelloFlow-Deployment",
+        work_pool_name="k8s-pool-01",
+        image="docker.io/nweistra/itlprefecthelloflow:latest",
+    )
 
-    
     # Optionally run the flow immediately after registration
     hello_flow()
