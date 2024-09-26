@@ -1,5 +1,5 @@
 from prefect import flow, task
-from prefect.filesystems import LocalFileSystem
+#from prefect.filesystems import LocalFileSystem
 
 # Define a task
 @task
@@ -14,7 +14,7 @@ def hello_flow():
 # Register the flow with Prefect
 if __name__ == "__main__":
     # Create a LocalFileSystem storage block
-    local_storage = LocalFileSystem(basepath="/opt/prefect/flows")
+    # local_storage = LocalFileSystem(basepath="/opt/prefect/flows")
 
     hello_flow.deploy(
         name="HelloFlow-Deployment",
