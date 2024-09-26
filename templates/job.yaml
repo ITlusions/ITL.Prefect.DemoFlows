@@ -1,29 +1,24 @@
 apiVersion: batch/v1
-kind: CronJob
+kind: Job
 metadata:
-  name: prefect-flow-cronjob-{{ randAlphaNum 5 | lower }}  # Append a random string for uniqueness
+  name: prefect-flow-job # Append a random string for uniqueness
   namespace: {{ .Values.namespace }}  # Namespace set from values.yaml
 spec:
-  schedule: "@once"  # Ensures it runs only once
-  successfulJobsHistoryLimit: 1  # Keep only the last successful job
-  failedJobsHistoryLimit: 0  # No history of failed jobs
-  jobTemplate:
+  ttlSecondsAfterFinished: 30
+  template:
     spec:
-      ttlSecondsAfterFinished: 30  # Clean up after 30 seconds
-      template:
-        spec:
-          containers:
-            - name: prefect-flow-container
-              image: "docker.io/nweistra/itlprefecthelloflow:{{ .Values.image.tag }}"  # Use specified Docker image
-              env:
-                - name: PREFECT_API_URL
-                  value: {{ .Values.prefect.api.url }}  # Prefect API URL from values
-              command: ["python", "/opt/prefect/flows/hello_flow.py"]
-              resources:
-                limits:  # Static resource limits
-                  memory: "256Mi"
-                  cpu: "500m"
-                requests:
-                  memory: "128Mi"
-                  cpu: "250m"
-          restartPolicy: Never
+      containers:
+        - name: prefect-flow-container
+          image: "docker.io/nweistra/itlprefecthelloflow:{{ .Values.image.tag }}"  # Use specified Docker image
+          env:
+            - name: PREFECT_API_URL
+              value: {{ .Values.prefect.api.url }}  # Prefect API URL from values
+          command: ["python", "/opt/prefect/flows/hello_flow.py"]
+          resources:
+            limits:  # Static resource limits
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+      restartPolicy: Never
