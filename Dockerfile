@@ -8,6 +8,7 @@ ENV PREFECT_ORION_UI_URL=http://prefect-server.prefect-server.svc.cluster.local:
 # Install system dependencies (if needed)
 RUN apt-get update && apt-get install -y \
     build-essential \
+    nano \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
