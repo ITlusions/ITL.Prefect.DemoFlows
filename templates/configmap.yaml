@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config
+  name: prefect-helloflow-config
   namespace: {{ .Values.namespace }}  # Use the specified namespace from values.yaml
 data:
   timestamp: "{{ include "getCurrentTimestamp" . }}"  # Call the helper to get the current timestamp
