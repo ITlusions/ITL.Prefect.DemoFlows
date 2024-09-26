@@ -16,14 +16,7 @@ spec:
           env:
             - name: PREFECT_API_URL
               value: {{ .Values.prefect.api.url }}  # Prefect API URL from values
-          command: ["/bin/sh", "-c"]
-          args:
-            - |
-              # Run the Prefect flow
-              python /opt/prefect/flows/hello_flow.py &&
-              # Update the ConfigMap with the current timestamp
-              kubectl patch configmap prefect-flow-job-config -n {{ .Values.namespace }} --type merge -p '{"data":{"lastRun":"$(date -u +\"%Y-%m-%dT%H:%M:%SZ\")"}}}' &&
-              echo "Job completed and timestamp updated."
+          command: ["python", "/opt/prefect/flows/hello_flow.py"]
           resources:
             limits:  # Static resource limits
               memory: "256Mi"

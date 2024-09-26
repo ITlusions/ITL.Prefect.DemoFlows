@@ -1,4 +1,4 @@
 {{/* Define a helper to get the current timestamp */}}
 {{- define "getCurrentTimestamp" -}}
-{{- now | date "2000-01-01T00:00:00" -}}
+{{- now | date "20060102150405" }}
 {{- end -}}
