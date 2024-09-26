@@ -1,0 +1,5 @@
+apiVersion: v2
+name: itl-perfect-helloflow
+description: A Helm chart that depends on the prefect-server chart
+version: 0.1.0
+appVersion: "1.0"
