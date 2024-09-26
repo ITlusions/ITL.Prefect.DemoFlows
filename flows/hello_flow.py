@@ -1,5 +1,4 @@
 from prefect import flow, task
-from prefect.deployments import run_deployment
 from prefect.filesystems import LocalFileSystem
 
 # Define a task
@@ -21,6 +20,7 @@ if __name__ == "__main__":
         name="HelloFlow-Deployment",
         work_pool_name="k8s-pool-01",
         image="docker.io/nweistra/itlprefecthelloflow:latest",
+        push=False
     )
 
     # Optionally run the flow immediately after registration
