@@ -1,5 +1,5 @@
 from prefect import flow, task
-from prefect.deployments import Deployment
+from prefect.deployments import run_deployment
 from prefect.filesystems import LocalFileSystem
 
 # Define a task
@@ -17,15 +17,8 @@ if __name__ == "__main__":
     # Create a LocalFileSystem storage block
     local_storage = LocalFileSystem(basepath="/opt/prefect/flows")
 
-    # Create a deployment for the flow
-    deployment = Deployment.build_from_flow(
-        flow=hello_flow,
-        name="hello-flow-deployment",
-        worker_pool="k8s-pool-01"  # Specify your worker pool name here
-    )
+    run_deployment(name="hello-flow")
 
-    # Register the deployment with Prefect
-    deployment.apply()
     
     # Optionally run the flow immediately after registration
     hello_flow()

@@ -29,4 +29,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Set the default command to run your flow
 # Replace "hello_flow.py" with the name of your Python flow script
-CMD ["python", "hello_flow.py"]
