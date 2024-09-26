@@ -1,5 +1,4 @@
 from prefect import flow, task
-#from prefect.filesystems import LocalFileSystem
 
 # Define a task
 @task
@@ -11,17 +10,6 @@ def say_hello():
 def hello_flow():
     say_hello()
 
-# Register the flow with Prefect
+# Run the flow directly when the script is executed
 if __name__ == "__main__":
-    # Create a LocalFileSystem storage block
-    # local_storage = LocalFileSystem(basepath="/opt/prefect/flows")
-
-    hello_flow.deploy(
-        name="HelloFlow-Deployment",
-        work_pool_name="k8s-pool-01",
-        image="docker.io/nweistra/itlprefecthelloflow:latest",
-        push=False
-    )
-
-    # Optionally run the flow immediately after registration
     hello_flow()

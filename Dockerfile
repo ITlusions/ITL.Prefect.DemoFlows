@@ -1,9 +1,8 @@
 # Use Python 3.9 slim image as the base image
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # Set environment variables for Prefect
 ENV PREFECT_API_URL=http://prefect-server.prefect-server.svc.cluster.local:4200/api
-ENV PREFECT_ORION_UI_URL=http://prefect-server.prefect-server.svc.cluster.local:4200
 
 # Install system dependencies (if needed)
 RUN apt-get update && apt-get install -y \
@@ -29,3 +28,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Set the default command to run your flow
 # Replace "hello_flow.py" with the name of your Python flow script
+CMD ["python", "hello_flow.py"]

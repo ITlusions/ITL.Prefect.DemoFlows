@@ -12,8 +12,6 @@ spec:
           env:
             - name: PREFECT_API_URL
               value: {{ .Values.prefect.api.url }}  # Prefect API URL from values
-            - name: PREFECT_ORION_UI_URL
-              value: {{ .Values.prefect.orion.ui.url }}  # Prefect Orion UI URL from values
           command: ["python", "/opt/prefect/flows/hello_flow.py"]
           resources:
             limits:  # Static resource limits
