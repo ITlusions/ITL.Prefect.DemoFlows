@@ -1,9 +1,26 @@
 name: Build and Push Docker Image
 
 on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'information'
+        type: choice
+        options:
+          - information
+          - debug
+          - warning
+          - critical
+      tags:
+        description: 'Purpose of Run This Workflow?'
+        required: true
+        type: string
   push:
-    branches:
-      - main  # Change this to your default branch if it's different
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   build:
