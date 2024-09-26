@@ -4,4 +4,4 @@ metadata:
   name: prefect-helloflow-config
   namespace: {{ .Values.namespace }}  # Use the specified namespace from values.yaml
 data:
-  timestamp: "{{ include "prefect.flow.timestamps" . | indent 2 }}"  # Call the helper to get the current timestamp
+  modificationTimestamp: "{{ now "RFC3339" }}"
