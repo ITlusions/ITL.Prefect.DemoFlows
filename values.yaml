@@ -1,7 +1,7 @@
 namespace: prefect-helloflow  # Namespace for the job
 
 image:
-  repository: "docker.io/nweistra/itlprefecthelloflow"  # Docker image repository
+  repository: "docker.io/nweistra"  # Docker image repository
   name: itlprefecthelloflow  # Image name
   tag: latest
 
