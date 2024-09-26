@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: prefect-flow-job-{{ randAlphaNum 5 | lower }}  # Append a random string for uniqueness
+  namespace: {{ .Values.namespace }}  # Namespace set from values.yaml
+spec:
+  template:
+    spec:
+      containers:
+        - name: prefect-flow-container
+          image: "docker.io/nweistra/itlprefecthelloflow:{{ .Values.image.tag }}"  # Use specified Docker image
+          env:
+            - name: PREFECT_API_URL
+              value: {{ .Values.prefect.api.url }}  # Prefect API URL from values
+            - name: PREFECT_ORION_UI_URL
+              value: {{ .Values.prefect.orion.ui.url }}  # Prefect Orion UI URL from values
+          command: ["python", "/opt/prefect/flows/hello_flow.py"]
+          resources:
+            limits:  # Static resource limits
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+      restartPolicy: Never
