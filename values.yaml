@@ -1,4 +1,4 @@
-namespace: prefect-server  # Namespace for the job
+namespace: prefect-helloflow  # Namespace for the job
 
 image:
   repository: "docker.io/nweistra/itlprefecthelloflow"  # Docker image repository
@@ -8,6 +8,3 @@ image:
 prefect:
   api:
     url: http://prefect-server.prefect-server.svc.cluster.local:4200/api  # Prefect API URL
-  orion:
-    ui:
-      url: http://prefect-server.prefect-server.svc.cluster.local:4200  # Prefect Orion UI URL
