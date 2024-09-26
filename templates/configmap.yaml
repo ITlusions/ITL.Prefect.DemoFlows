@@ -4,4 +4,4 @@ metadata:
   name: prefect-helloflow-config
   namespace: {{ .Values.namespace }}  # Use the specified namespace from values.yaml
 data:
-  modificationTimestamp: "{{ now "RFC3339" }}"
+  modificationTimestamp: "{{ now }}"
