@@ -1,5 +1,5 @@
 namespace: prefect-helloflow  # Namespace for the job
-
+nameOverride: ''
 image:
   repository: "docker.io/nweistra"  # Docker image repository
   name: itlprefecthelloflow  # Image name

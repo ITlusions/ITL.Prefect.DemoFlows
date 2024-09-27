@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: prefect-flow-job  # Append a random string for uniqueness
+  name: {{ include "prefect.fullname" . }}-job  # Append a random string for uniqueness
   namespace: {{ .Values.namespace }}  # Namespace set from values.yaml
   annotations:
     argocd.argoproj.io/hook: PostSync
@@ -11,7 +11,7 @@ spec:
   template:
     spec:
       containers:
-        - name: prefect-flow-container
+        - name: {{ include "prefect.fullname" . }}-container
           image: "docker.io/nweistra/itlprefecthelloflow:{{ .Values.image.tag }}"  # Use specified Docker image
           env:
             - name: PREFECT_API_URL
